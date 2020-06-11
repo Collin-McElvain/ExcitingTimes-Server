@@ -35,4 +35,9 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-var UserModel = mongoose.model('UserModel', UserSchema );
+//On user deletion, delete all events
+UserSchema.pre('remove', function(next) {
+    this.model('EventModel').deleteMany({ user: this._id }, next);
+});
+
+module.exports = mongoose.model('UserModel', UserSchema );
