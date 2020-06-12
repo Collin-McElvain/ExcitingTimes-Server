@@ -19,6 +19,11 @@ router.post("/login", UserService.login);
 
 router.post("/createUser", UserService.createUser);
 
-router.delete("/deleteUser", UserService.deleteUser.bind(UserService));
+router.delete("/deleteUser", UserService.deleteUser);
+
+
+router.get("/events", EventService.getall.bind(EventService));
+
+router.post("/event", EventService.createEvent);
 
 module.exports = router;
