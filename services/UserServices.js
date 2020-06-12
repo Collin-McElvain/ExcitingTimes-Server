@@ -21,7 +21,7 @@ module.exports = {
                     if(isMatch){
                         // Create a 2 hour token for the logged in user
                         let token = jwt.sign({ id: resultUser.id }, config.secret, { expiresIn: 7200 });
-                        res.status(200).send({ auth: true, token: token, user: resultUser });
+                        res.status(200).send({ auth: true, token: token, user: resultUser.username });
                     }
                     else{
                         // Incorrect password
@@ -49,7 +49,7 @@ module.exports = {
                     else {
                         // Create JSON web token that will expire in 2 hours
                         let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: 7200 }); 
-                        res.status(200).send({ auth: true, token: token, user: user });
+                        res.status(200).send({ auth: true, token: token, user: user.username });
                     }
                 });
             }
