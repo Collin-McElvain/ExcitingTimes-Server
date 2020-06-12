@@ -4,6 +4,7 @@ const mongoose = require("mongoose"),
     express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
+    jwt = require('jsonwebtoken'),
     port = 4000;
     
 
