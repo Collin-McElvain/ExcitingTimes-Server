@@ -6,4 +6,4 @@ var EventSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}
 });
 
-module.exports = mongoose.model('EventModel', EventSchema );
+module.exports = mongoose.model('EventModel', EventSchema, 'Event' );

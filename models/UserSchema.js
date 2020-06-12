@@ -1,15 +1,17 @@
-var mongoose = require("mongoose"),
-    bcrypt = require(bcrypt),
+var mongoose = require('mongoose'),
+    bcrypt = require('bcrypt'),
     SALT_FACTOR = 7;
 
 var UserSchema = new mongoose.Schema({
     username: { type: String, required: true, index: {unique: true} },
     password: { type: String, required: true }
+},{
+    timestamps:true
 });
 
 UserSchema.pre('save', function(next) {
     var user = this;
-
+    console.log('this is fucking dumb');
     //Check for updated password
     if(!user.isModified('password')) {
         //return the callback function
@@ -40,4 +42,13 @@ UserSchema.pre('remove', function(next) {
     this.model('EventModel').deleteMany({ user: this._id }, next);
 });
 
-module.exports = mongoose.model('UserModel', UserSchema );
+UserSchema.methods.comparePassword = function(password, cb) {
+    bcrypt.compare(password, this.password, function(err, passMatch){
+        if(err){
+            return cb(err);
+        }
+        cb(null, passMatch);
+    });
+};
+
+module.exports = mongoose.model('UserModel', UserSchema, 'User' );
