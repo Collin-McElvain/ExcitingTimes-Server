@@ -26,4 +26,6 @@ router.get("/events", EventService.getall.bind(EventService));
 
 router.post("/event", EventService.createEvent);
 
+router.post("/deleteEvent", EventService.deleteEvent);
+
 module.exports = router;
