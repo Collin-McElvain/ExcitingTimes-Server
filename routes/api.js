@@ -67,4 +67,7 @@ router.post("/event", authToken, EventService.createEvent);
 // POST call to delete an event
 router.post("/deleteEvent", authToken, EventService.deleteEvent);
 
+// PUT call to edit an event
+router.put("/editEvent", authToken, EventService.editEvent);
+
 module.exports = router;

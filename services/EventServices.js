@@ -70,6 +70,17 @@ module.exports = {
             else {
                 res.send("Successfully deleted");
             }
-        })
-    }
+        });
+    },
+
+    editEvent (req, res) {
+        Event.findByIdAndUpdate(req.body._id, req.body, {new:true}, (err) => {
+            if(err){
+                res.status(400).send(err);
+            }
+            else {
+                res.send("Successfully edited");
+            }
+        });
+    },
 };
