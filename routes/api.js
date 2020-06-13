@@ -33,7 +33,6 @@ router.delete("/deleteUser", UserService.deleteUser);
 // Check all tokens and validate on all requests that require authentication.
 let authToken = function (req, res, next){
     let token = req.body.token || req.query.token || req.headers["x-access-token"];
-    console.log("middleware");
     if(token){
         // verify the token
         jwt.verify(token, config.secret, function(err, verifiedToken){
@@ -66,6 +65,6 @@ router.get("/events", authToken, EventService.getall);
 router.post("/event", authToken, EventService.createEvent);
 
 // POST call to delete an event
-router.post("/deleteEvent", EventService.deleteEvent);
+router.post("/deleteEvent", authToken, EventService.deleteEvent);
 
 module.exports = router;

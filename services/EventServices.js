@@ -62,7 +62,8 @@ module.exports = {
     },
 
     deleteEvent (req, res) {
-        Event.deleteOne({id: req.body.id}, (err) => {
+        console.log(req.body);
+        Event.deleteOne({_id: req.body.id}, (err) => {
             if(err){
                 res.status(400).send(err);
             }
