@@ -20,7 +20,7 @@ module.exports = {
                     }
                     if(isMatch){
                         // Create a 2 hour token for the logged in user
-                        let token = jwt.sign({ id: resultUser.id }, config.secret, { expiresIn: 7200 });
+                        let token = jwt.sign({ id: resultUser._id }, config.secret, { expiresIn: 7200 });
                         res.status(200).send({ auth: true, token: token, user: resultUser.username });
                     }
                     else{
@@ -41,14 +41,14 @@ module.exports = {
                 res.status(400).send("This username is already taken");
             }
             else {
-                var newUser = new User({ username: req.body.username, password: req.body.password });
+                var newUser = new User({ name: req.body.name, username: req.body.username, password: req.body.password });
                 newUser.save(function(err, user) {
                     if(err) {
                         res.status(400).send('There was a DB error');
                     }
                     else {
                         // Create JSON web token that will expire in 2 hours
-                        let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: 7200 }); 
+                        let token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 7200 }); 
                         res.status(200).send({ auth: true, token: token, user: user.username });
                     }
                 });

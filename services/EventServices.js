@@ -36,7 +36,7 @@ module.exports = {
                 res.status(400).send('error');
             }
             if(!thisUser){
-                res.status(400).send('no user by that username');
+                res.status(400).send('No user by that username');
             }
             else{
                 //Create a new event with this user

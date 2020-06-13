@@ -3,12 +3,14 @@ var mongoose = require('mongoose'),
     SALT_FACTOR = 7;
 
 var UserSchema = new mongoose.Schema({
+    name:     { type: String, required: true },
     username: { type: String, required: true, index: {unique: true} },
     password: { type: String, required: true }
 },{
     timestamps:true
 });
 
+// Hash the password
 UserSchema.pre('save', function(next) {
     var user = this;
     console.log('this is fucking dumb');
@@ -37,11 +39,12 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-//On user deletion, delete all events
+// On user deletion, delete all events
 UserSchema.pre('remove', function(next) {
     this.model('EventModel').deleteMany({ user: this._id }, next);
 });
 
+// Compare the passwords
 UserSchema.methods.comparePassword = function(password, cb) {
     bcrypt.compare(password, this.password, function(err, passMatch){
         if(err){
