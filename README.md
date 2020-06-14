@@ -5,7 +5,7 @@ Node.js Server for the Exciting Times Web application
 ---
 ## Requirements
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
+For development, you will only need Node.js and MongoDB.
 
 ### Node
 - #### Node installation on Windows
@@ -35,6 +35,17 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
     $ npm install npm -g
 
+### MongoDB
+
+ - #### Installation tutorials:
+  
+     Just go to the MongoDB website to install and get tutorials:
+      https://www.mongodb.com/try/download/community
+    
+- #### Download Center
+  
+  https://www.mongodb.com/try/download/community
+  
 ---
 
 ## Install
