@@ -13,7 +13,6 @@ var UserSchema = new mongoose.Schema({
 // Hash the password
 UserSchema.pre('save', function(next) {
     var user = this;
-    console.log('this is fucking dumb');
     //Check for updated password
     if(!user.isModified('password')) {
         //return the callback function

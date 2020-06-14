@@ -37,20 +37,17 @@ let authToken = function (req, res, next){
         // verify the token
         jwt.verify(token, config.secret, function(err, verifiedToken){
             if (err){
-                console.log("error");
                 // token is not authenticated
                 res.status(403).send({
                     success: false,
                     message: "Failed to authenticate",
                 });
             } else {
-                console.log("wtf");
                 next();
             }
         });
     } else {
         // No token
-        console.log("no token");
         res.status(403).send({
             success: false,
             message: "No token!",

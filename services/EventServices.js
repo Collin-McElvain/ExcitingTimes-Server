@@ -47,7 +47,6 @@ module.exports = {
                 });
                 newEvent.save(function(err, event){
                     if(err) {
-                        console.log(err)
                         res.status(400).send(err);
                     }
                     else {
@@ -62,7 +61,6 @@ module.exports = {
     },
 
     deleteEvent (req, res) {
-        console.log(req.body);
         Event.deleteOne({_id: req.body.id}, (err) => {
             if(err){
                 res.status(400).send(err);
